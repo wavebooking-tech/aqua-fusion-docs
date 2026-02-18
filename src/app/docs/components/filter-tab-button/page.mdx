@@ -1,0 +1,47 @@
+export const metadata = {
+  title: 'FilterTabButton',
+  description: 'A tab-style toggle button for filtering content by category.',
+};
+
+# FilterTabButton
+
+A tab-style button used for filtering content by category. Displays an active/inactive state, supports optional item counts and leading icons. Commonly used in groups to form a filter tab bar.
+
+## Import
+
+```tsx
+import { FilterTabButton } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-filtertabbutton--default" height={200} />
+
+## Usage
+
+```tsx
+const filters = ['all', 'active', 'completed', 'cancelled'];
+
+<div className="flex gap-1">
+  {filters.map((f) => (
+    <FilterTabButton
+      key={f}
+      label={f.charAt(0).toUpperCase() + f.slice(1)}
+      count={counts[f]}
+      isActive={activeFilter === f}
+      onClick={() => setActiveFilter(f)}
+    />
+  ))}
+</div>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Display label for the tab.', required: true },
+  { name: 'isActive', type: 'boolean', description: 'Whether this tab is currently active.', required: true },
+  { name: 'onClick', type: '() => void', description: 'Click handler for the tab.', required: true },
+  { name: 'count', type: 'number', description: 'Optional count displayed next to the label.' },
+  { name: 'icon', type: 'ReactNode', description: 'Optional icon displayed before the label.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />

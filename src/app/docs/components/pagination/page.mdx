@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'Pagination',
+  description: 'Pagination controls for lists and tables with responsive Previous/Next buttons and page info.',
+};
+
+# Pagination
+
+Reusable pagination controls for lists and tables. Shows simple Previous/Next buttons on mobile, and expands to include result counts and page indicators on desktop. Automatically hides when there is only one page.
+
+## Import
+
+```tsx
+import { Pagination } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-pagination--default" height={200} />
+
+## Usage
+
+```tsx
+<Pagination
+  page={currentPage}
+  pageSize={10}
+  total={97}
+  totalPages={10}
+  onPageChange={(newPage) => setCurrentPage(newPage)}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'page', type: 'number', description: 'Current page index (0-based).', required: true },
+  { name: 'pageSize', type: 'number', description: 'Number of items displayed per page.', required: true },
+  { name: 'total', type: 'number', description: 'Total number of items across all pages.', required: true },
+  { name: 'totalPages', type: 'number', description: 'Total number of pages.', required: true },
+  { name: 'onPageChange', type: '(page: number) => void', description: 'Callback when the page changes. Receives the new 0-based page index.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the pagination container.' },
+]} />

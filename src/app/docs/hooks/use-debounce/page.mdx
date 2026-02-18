@@ -1,0 +1,116 @@
+export const metadata = {
+  title: 'useDebounce',
+  description: 'Hooks for debouncing values and callbacks, plus a throttle hook for rate-limiting updates.',
+};
+
+# useDebounce
+
+A hook for debouncing a reactive value. Returns a debounced copy that only updates after the specified delay has elapsed since the last change. Useful for search inputs, API calls, and performance optimization.
+
+## Import
+
+```tsx
+import { useDebounce } from '@wavebooking/aqua-fusion';
+```
+
+## Usage
+
+```tsx
+function SearchComponent() {
+  const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 300);
+
+  useEffect(() => {
+    if (debouncedSearch) {
+      fetchResults(debouncedSearch);
+    }
+  }, [debouncedSearch]);
+
+  return <Input value={search} onChange={(e) => setSearch(e.target.value)} />;
+}
+```
+
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `T` | The value to debounce. |
+| `delay` | `number` | Debounce delay in milliseconds. |
+
+## Return Value
+
+| Type | Description |
+|------|-------------|
+| `T` | The debounced value, updated only after the delay elapses without further changes. |
+
+---
+
+## useDebouncedCallback
+
+A companion hook for debouncing a callback function instead of a value.
+
+```tsx
+import { useDebouncedCallback } from '@wavebooking/aqua-fusion';
+```
+
+### Usage
+
+```tsx
+const handleSearch = useDebouncedCallback(
+  (query: string) => {
+    api.search(query);
+  },
+  300
+);
+
+return <Input onChange={(e) => handleSearch(e.target.value)} />;
+```
+
+### Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `callback` | `(...args) => void` | The function to debounce. |
+| `delay` | `number` | Debounce delay in milliseconds. |
+
+### Return Value
+
+| Type | Description |
+|------|-------------|
+| `(...args) => void` | A debounced version of the callback. |
+
+---
+
+## useThrottle
+
+A throttle hook that ensures the value updates at most once per interval, unlike debounce which waits for inactivity.
+
+```tsx
+import { useThrottle } from '@wavebooking/aqua-fusion';
+```
+
+### Usage
+
+```tsx
+const [scrollY, setScrollY] = useState(0);
+const throttledScrollY = useThrottle(scrollY, 100);
+
+useEffect(() => {
+  const handler = () => setScrollY(window.scrollY);
+  window.addEventListener('scroll', handler);
+  return () => window.removeEventListener('scroll', handler);
+}, []);
+```
+
+### Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `T` | The value to throttle. |
+| `interval` | `number` | Minimum interval between updates in milliseconds. |
+
+### Return Value
+
+| Type | Description |
+|------|-------------|
+| `T` | The throttled value, updated at most once per interval. |

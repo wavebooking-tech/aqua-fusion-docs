@@ -1,0 +1,69 @@
+export const metadata = {
+  title: 'Img',
+  description: 'Enhanced Next.js Image component with automatic fallback support.',
+};
+
+# Img
+
+An enhanced wrapper around the Next.js `Image` component that adds automatic fallback behavior. When the primary image source fails to load, it seamlessly switches to the provided fallback image.
+
+## Import
+
+```tsx
+import { Img } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-img--default" height={300} />
+
+## Usage
+
+```tsx
+<Img
+  src="/photos/beach.jpg"
+  alt="Beach sunset"
+  width={400}
+  height={300}
+/>
+```
+
+### With fallback
+
+```tsx
+<Img
+  src="/photos/beach.jpg"
+  fallbackSrc="/images/placeholder.jpg"
+  alt="Beach sunset"
+  width={400}
+  height={300}
+/>
+```
+
+### Fill mode
+
+```tsx
+<div className="relative h-48 w-full">
+  <Img
+    src="/photos/beach.jpg"
+    fallbackSrc="/images/placeholder.jpg"
+    alt="Beach sunset"
+    fill
+    className="object-cover"
+  />
+</div>
+```
+
+## Props
+
+The `Img` component extends all props from the Next.js `Image` component (`next/image`) with the following additions:
+
+<PropsTable props={[
+  { name: 'src', type: 'string | StaticImport', description: 'The image source URL or static import.', required: true },
+  { name: 'alt', type: 'string', description: 'Alt text describing the image.', required: true },
+  { name: 'fallbackSrc', type: 'string', description: 'Fallback image URL displayed if the primary source fails to load.' },
+  { name: 'onError', type: '(error: SyntheticEvent) => void', description: 'Callback fired when the image fails to load. Called in addition to the fallback behavior.' },
+  { name: 'width', type: 'number', description: 'Image width in pixels. Required unless using fill mode.' },
+  { name: 'height', type: 'number', description: 'Image height in pixels. Required unless using fill mode.' },
+  { name: 'fill', type: 'boolean', description: 'When true, the image fills its parent container. Parent must have position: relative.' },
+]} />

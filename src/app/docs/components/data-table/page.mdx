@@ -1,0 +1,73 @@
+export const metadata = {
+  title: 'DataTable',
+  description: 'A feature-rich data table with sorting, row selection, loading skeletons, and empty states.',
+};
+
+# DataTable
+
+A feature-rich data table pattern with column-based sorting, row selection via checkboxes, loading skeleton placeholders, configurable empty states, and click-through row interactions. Supports striped rows and compact mode.
+
+## Import
+
+```tsx
+import { DataTable } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-datatable--default" height={400} />
+
+## Usage
+
+```tsx
+const columns = [
+  { key: 'name', header: 'Name', cell: (row) => row.name, sortable: true },
+  { key: 'email', header: 'Email', cell: (row) => row.email },
+  { key: 'role', header: 'Role', cell: (row) => <Badge>{row.role}</Badge>, align: 'center' },
+];
+
+<DataTable
+  data={users}
+  columns={columns}
+  keyExtractor={(row) => row.id}
+  sortColumn={sortCol}
+  sortDirection={sortDir}
+  onSortChange={(col, dir) => { setSortCol(col); setSortDir(dir); }}
+  onRowClick={(row) => router.push(`/users/${row.id}`)}
+  emptyState={{ title: 'No users found', description: 'Try adjusting your search filters.' }}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'data', type: 'T[]', description: 'Array of data objects to display as rows.', required: true },
+  { name: 'columns', type: 'Column<T>[]', description: 'Column definitions that control headers and cell rendering.', required: true },
+  { name: 'keyExtractor', type: '(row: T, index: number) => string | number', description: 'Function to extract a unique key from each row.', required: true },
+  { name: 'selectable', type: 'boolean', default: 'false', description: 'Whether to show row selection checkboxes.' },
+  { name: 'selectedKeys', type: 'Set<string | number>', description: 'Set of currently selected row keys.' },
+  { name: 'onSelectionChange', type: '(selectedKeys: Set<string | number>) => void', description: 'Callback when row selection changes.' },
+  { name: 'sortColumn', type: 'string', description: 'Key of the currently sorted column.' },
+  { name: 'sortDirection', type: "'asc' | 'desc' | null", description: 'Current sort direction.' },
+  { name: 'onSortChange', type: "(column: string, direction: 'asc' | 'desc' | null) => void", description: 'Callback when sort column or direction changes.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Whether the table is in a loading state. Shows skeleton rows.' },
+  { name: 'loadingRows', type: 'number', default: '5', description: 'Number of skeleton rows to display when loading.' },
+  { name: 'emptyState', type: '{ title: string; description?: string; icon?: ReactNode; action?: ReactNode }', description: 'Configuration for the empty state displayed when data is empty.' },
+  { name: 'onRowClick', type: '(row: T, index: number) => void', description: 'Callback when a row is clicked.' },
+  { name: 'hoverable', type: 'boolean', default: 'true', description: 'Whether rows have a hover highlight effect.' },
+  { name: 'striped', type: 'boolean', default: 'false', description: 'Whether to use alternating row background colors.' },
+  { name: 'compact', type: 'boolean', default: 'false', description: 'Whether to use reduced cell padding.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the table container.' },
+]} />
+
+### Column&lt;T&gt;
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `key` | `string` | Unique key for the column. |
+| `header` | `ReactNode` | Column header content. |
+| `cell` | `(row: T, index: number) => ReactNode` | Cell renderer function. |
+| `sortable` | `boolean` | Whether the column supports sorting. |
+| `width` | `string` | Column width as a CSS value. |
+| `align` | `'left' \| 'center' \| 'right'` | Text alignment for header and cells. |
+| `className` | `string` | Additional CSS class for the column cells. |

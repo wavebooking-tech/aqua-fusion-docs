@@ -1,0 +1,52 @@
+export const metadata = {
+  title: 'Card',
+  description: 'Container component with border, shadow, and optional hover effects.',
+};
+
+# Card
+
+A versatile container component with consistent border, background, and shadow styling. Supports `default` and `outline` visual variants, optional hover effects, and click handling.
+
+## Import
+
+```tsx
+import { Card } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-card--default" height={200} />
+
+## Usage
+
+```tsx
+<Card>
+  <p>Default card content</p>
+</Card>
+```
+
+### Outline variant
+
+```tsx
+<Card variant="outline">
+  <p>Card with emphasized border</p>
+</Card>
+```
+
+### Hoverable and clickable
+
+```tsx
+<Card hoverable onClick={() => console.log('clicked')}>
+  <p>Interactive card with hover shadow</p>
+</Card>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Card content.', required: true },
+  { name: 'variant', type: "'default' | 'outline'", default: "'default'", description: 'Visual variant controlling border style.' },
+  { name: 'hoverable', type: 'boolean', description: 'Whether the card shows an elevated shadow on hover.' },
+  { name: 'onClick', type: '() => void', description: 'Click handler, making the card interactive.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the card container.' },
+]} />

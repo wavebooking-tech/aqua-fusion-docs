@@ -1,0 +1,58 @@
+export const metadata = {
+  title: 'IconButton',
+  description: 'Icon-only button with tooltip, multiple variants, and loading state.',
+};
+
+# IconButton
+
+A compact, icon-only button designed for toolbar actions and inline controls. Includes an accessible label, an optional tooltip on hover, and a loading spinner. Built with `class-variance-authority` for consistent sizing and color variants.
+
+## Import
+
+```tsx
+import { IconButton } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-iconbutton--default" height={200} />
+
+## Usage
+
+```tsx
+import { Icon } from '@wavebooking/aqua-fusion';
+
+<IconButton
+  icon={<Icon name="PencilIcon" />}
+  label="Edit"
+/>
+
+<IconButton
+  icon={<Icon name="TrashIcon" />}
+  label="Delete"
+  variant="destructive"
+  size="sm"
+/>
+
+<IconButton
+  icon={<Icon name="ArrowPathIcon" />}
+  label="Refresh"
+  loading
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'icon', type: 'ReactElement', description: 'The icon element to display inside the button.', required: true },
+  { name: 'label', type: 'string', description: 'Accessible label for the button. Also used as the tooltip text.', required: true },
+  { name: 'variant', type: "'default' | 'primary' | 'ghost' | 'destructive' | 'inverse'", default: "'default'", description: 'Visual style variant of the button.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of the button. Icon size is automatically matched.' },
+  { name: 'showTooltip', type: 'boolean', default: 'true', description: 'Whether to show a tooltip on hover.' },
+  { name: 'tooltipPlacement', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", description: 'Placement of the tooltip relative to the button.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Whether the button is in a loading state. Shows a spinner and disables interaction.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the button is disabled.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply.' },
+]} />
+
+The component also accepts all standard HTML `<button>` attributes except `children`.

@@ -1,0 +1,43 @@
+export const metadata = {
+  title: 'FormField',
+  description: 'A standardized form field wrapper providing label, helper text, error state, and accessibility.',
+};
+
+# FormField
+
+A standardized wrapper for form inputs that provides consistent label styling, helper text, error state handling, and automatic accessibility via label-input association. Wrap any input component to get unified form field behavior.
+
+## Import
+
+```tsx
+import { FormField } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-formfield--default" height={300} />
+
+## Usage
+
+```tsx
+<FormField label="Email" error={errors.email?.message} required>
+  <Input type="email" {...register('email')} />
+</FormField>
+
+<FormField label="Bio" helperText="Write a short description about yourself.">
+  <Textarea {...register('bio')} />
+</FormField>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'The form input element to wrap.', required: true },
+  { name: 'label', type: 'string', description: 'Label text displayed above the input.' },
+  { name: 'helperText', type: 'string', description: 'Helper text shown below the input. Replaced by error when present.' },
+  { name: 'error', type: 'string', description: 'Error message displayed below the input in red. Replaces helperText.' },
+  { name: 'required', type: 'boolean', description: 'Whether the field is required. Shows a red asterisk next to the label.' },
+  { name: 'disabled', type: 'boolean', description: 'Whether the field is disabled. Reduces wrapper opacity.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper div.' },
+  { name: 'id', type: 'string', description: 'Custom ID for the field. Auto-generated if not provided.' },
+]} />

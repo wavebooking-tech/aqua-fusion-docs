@@ -1,0 +1,82 @@
+export const metadata = {
+  title: 'Avatar',
+  description: 'Display user profile images with fallback initials and optional status indicators.',
+};
+
+# Avatar
+
+Display user profile images with automatic fallback to initials when no image is available. Supports status indicators, size variants, and animated transitions.
+
+## Import
+
+```tsx
+import { Avatar, AvatarGroup } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-avatar--default" height={200} />
+
+## Usage
+
+```tsx
+<Avatar src="/user.jpg" alt="Jane Doe" name="Jane Doe" size="md" />
+```
+
+### With status indicator
+
+```tsx
+<Avatar
+  src="/user.jpg"
+  name="Jane Doe"
+  status="online"
+  showStatusIndicator
+/>
+```
+
+### Fallback initials
+
+When `src` is not provided or the image fails to load, the component displays initials derived from the `name` prop.
+
+```tsx
+<Avatar name="Jane Doe" size="lg" variant="primary" />
+```
+
+### Avatar group
+
+Stack multiple avatars with automatic overlap and a "+N" overflow indicator.
+
+```tsx
+<AvatarGroup max={3} size="md">
+  <Avatar name="Alice" src="/alice.jpg" />
+  <Avatar name="Bob" src="/bob.jpg" />
+  <Avatar name="Charlie" src="/charlie.jpg" />
+  <Avatar name="Diana" src="/diana.jpg" />
+</AvatarGroup>
+```
+
+## Props
+
+### Avatar
+
+<PropsTable props={[
+  { name: 'src', type: 'string | null', description: 'Image URL for the avatar. Falls back to initials when absent or on error.' },
+  { name: 'alt', type: 'string', description: 'Alt text for the image. Defaults to name or "Avatar".' },
+  { name: 'name', type: 'string', description: 'User name used to generate fallback initials.' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", default: "'md'", description: 'Size of the avatar.' },
+  { name: 'variant', type: "'default' | 'primary' | 'secondary'", default: "'default'", description: 'Color variant for the fallback background.' },
+  { name: 'status', type: "'online' | 'offline' | 'busy' | 'away'", description: 'Presence status for the indicator dot.' },
+  { name: 'showStatusIndicator', type: 'boolean', default: 'false', description: 'Whether to display the status indicator dot.' },
+  { name: 'bordered', type: 'boolean', default: 'false', description: 'Add a white ring and shadow around the avatar.' },
+  { name: 'animate', type: 'boolean', default: 'true', description: 'Enable scale and hover animations via Framer Motion.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />
+
+### AvatarGroup
+
+<PropsTable props={[
+  { name: 'children', type: 'React.ReactNode', description: 'Avatar components to display in the group.', required: true },
+  { name: 'max', type: 'number', default: '4', description: 'Maximum number of avatars to show before displaying the "+N" overflow.' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", default: "'md'", description: 'Size applied to the overlap spacing.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the group container.' },
+]} />

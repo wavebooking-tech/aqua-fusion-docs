@@ -1,0 +1,82 @@
+export const metadata = {
+  title: 'Toast',
+  description: 'Temporary notification messages with auto-dismiss and severity variants.',
+};
+
+# Toast
+
+A temporary notification component that appears in the bottom-right corner of the viewport. Supports `default` (success) and `destructive` (error) variants with automatic icon selection and auto-dismiss after a configurable duration. Use with `ToastProvider` and `useGlobalToast` for application-wide toast management.
+
+## Import
+
+```tsx
+import { Toast, ToastProvider, useGlobalToast } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-toast--default" height={200} />
+
+## Usage
+
+### With ToastProvider (recommended)
+
+Wrap your application with `ToastProvider` and use the `useGlobalToast` hook to trigger toasts from any component.
+
+```tsx
+// App root
+<ToastProvider>
+  <App />
+</ToastProvider>
+```
+
+```tsx
+// Any component
+const { toast, success, error } = useGlobalToast();
+
+// Using the toast function
+toast({
+  title: 'Changes saved',
+  description: 'Your settings have been updated.',
+  variant: 'default',
+});
+
+// Using convenience methods
+success('Saved', 'Your changes have been saved.');
+error('Error', 'Failed to save changes.');
+```
+
+### Standalone
+
+```tsx
+<Toast
+  title="Booking confirmed"
+  description="You will receive a confirmation email shortly."
+  variant="default"
+  duration={5000}
+  onClose={() => console.log('closed')}
+/>
+```
+
+## Props
+
+### Toast
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Primary notification text.', required: true },
+  { name: 'description', type: 'string | ReactNode', description: 'Secondary text displayed below the title.' },
+  { name: 'variant', type: "'default' | 'destructive'", default: "'default'", description: 'Visual variant. "default" shows a success style, "destructive" shows an error style.' },
+  { name: 'duration', type: 'number', default: '3000', description: 'Auto-dismiss duration in milliseconds. Set to 0 to disable auto-dismiss.' },
+  { name: 'onClose', type: '() => void', description: 'Callback when the toast is dismissed (auto or manual).' },
+  { name: 'redirect', type: 'string', description: 'URL for an optional "Go to page" link appended to the description.' },
+]} />
+
+### useGlobalToast
+
+Returns an object with the following methods:
+
+<PropsTable props={[
+  { name: 'toast', type: '(options: ToastOptions) => void', description: 'Show a toast with full configuration (title, description, variant, duration, redirect).' },
+  { name: 'success', type: '(title: string, description?: string) => void', description: 'Convenience method to show a default (success) toast.' },
+  { name: 'error', type: '(title: string, description?: string) => void', description: 'Convenience method to show a destructive (error) toast.' },
+]} />

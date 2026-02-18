@@ -1,0 +1,58 @@
+export const metadata = {
+  title: 'FilterBar',
+  description: 'A search and filter toolbar with active filter chips, search input, and clear-all functionality.',
+};
+
+# FilterBar
+
+A combined search and filter toolbar for list and table views. Includes a search input, active filter chips with removal, a filter count badge, and support for custom filter controls and action buttons.
+
+## Import
+
+```tsx
+import { FilterBar } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-filterbar--default" height={300} />
+
+## Usage
+
+```tsx
+<FilterBar
+  searchValue={search}
+  onSearchChange={setSearch}
+  searchPlaceholder="Search lessons..."
+  activeFilters={[
+    { key: 'status', label: 'Status', value: 'Active' },
+    { key: 'level', label: 'Level', value: 'Beginner' },
+  ]}
+  onRemoveFilter={(key) => removeFilter(key)}
+  onClearAll={() => clearAllFilters()}
+  actions={<Button variant="outline" size="sm">Add Filter</Button>}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'searchValue', type: 'string', default: "''", description: 'Current search input value.' },
+  { name: 'onSearchChange', type: '(value: string) => void', description: 'Callback when the search input value changes.' },
+  { name: 'searchPlaceholder', type: 'string', default: "'Search...'", description: 'Placeholder text for the search input.' },
+  { name: 'activeFilters', type: 'FilterOption[]', default: '[]', description: 'Array of currently active filters displayed as removable chips.' },
+  { name: 'onRemoveFilter', type: '(key: string) => void', description: 'Callback when a filter chip is removed.' },
+  { name: 'onClearAll', type: '() => void', description: 'Callback to clear all active filters. Only shown when more than one filter is active.' },
+  { name: 'actions', type: 'ReactNode', description: 'Additional action elements displayed next to the search input.' },
+  { name: 'children', type: 'ReactNode', description: 'Additional filter controls rendered in the toolbar.' },
+  { name: 'showFilterCount', type: 'boolean', default: 'true', description: 'Whether to show a badge with the active filter count.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper.' },
+]} />
+
+### FilterOption
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `key` | `string` | Unique key for the filter. |
+| `label` | `string` | Display label for the filter category. |
+| `value` | `string` | Display value of the active filter. |

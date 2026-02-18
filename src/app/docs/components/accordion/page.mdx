@@ -1,0 +1,74 @@
+export const metadata = {
+  title: 'Accordion',
+  description: 'Collapsible content sections with smooth expand/collapse animations.',
+};
+
+# Accordion
+
+A compound component for collapsible content sections. Supports both controlled and uncontrolled modes with smooth height animations. Built with `Accordion`, `Accordion.Button`, and `Accordion.Panel` sub-components.
+
+## Import
+
+```tsx
+import { Accordion, AccordionButton, AccordionPanel } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-accordion--default" height={200} />
+
+## Usage
+
+```tsx
+<Accordion defaultOpen>
+  {({ open }) => (
+    <>
+      <Accordion.Button showChevron>
+        <span>Section Title</span>
+      </Accordion.Button>
+      <Accordion.Panel className="pt-2">
+        <p>Collapsible content goes here.</p>
+      </Accordion.Panel>
+    </>
+  )}
+</Accordion>
+```
+
+### Controlled
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Accordion open={open} onOpenChange={setOpen}>
+  <Accordion.Button showChevron>Toggle</Accordion.Button>
+  <Accordion.Panel>Controlled content</Accordion.Panel>
+</Accordion>
+```
+
+## Props
+
+### Accordion
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode | ((props: { open: boolean }) => ReactNode)', description: 'Content or render function receiving the open state.', required: true },
+  { name: 'defaultOpen', type: 'boolean', default: 'false', description: 'Whether the accordion is open by default (uncontrolled).' },
+  { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+  { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Callback when open state changes.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the wrapper element.' },
+]} />
+
+### AccordionButton
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Button content.', required: true },
+  { name: 'showChevron', type: 'boolean', default: 'false', description: 'Show a default chevron icon that rotates when open.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the button element.' },
+]} />
+
+### AccordionPanel
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Panel content revealed when the accordion is open.', required: true },
+  { name: 'duration', type: 'number', default: '200', description: 'Animation duration in milliseconds.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the inner content wrapper.' },
+]} />

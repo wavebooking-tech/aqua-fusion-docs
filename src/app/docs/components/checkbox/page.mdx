@@ -1,0 +1,56 @@
+export const metadata = {
+  title: 'Checkbox',
+  description: 'Accessible checkbox built on Radix UI with label, description, error, and indeterminate support.',
+};
+
+# Checkbox
+
+An accessible checkbox component built on top of Radix UI primitives. Supports labels, descriptions, error messages, indeterminate state, and multiple size variants.
+
+## Import
+
+```tsx
+import { Checkbox } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-checkbox--default" height={200} />
+
+## Usage
+
+```tsx
+<Checkbox label="Accept terms" />
+
+<Checkbox
+  label="Receive updates"
+  description="We will send you weekly newsletters."
+  size="lg"
+/>
+
+<Checkbox
+  label="Invalid field"
+  error="This field is required"
+  variant="error"
+/>
+
+<Checkbox label="Select all" indeterminate />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Label text displayed next to the checkbox.' },
+  { name: 'description', type: 'string', description: 'Description text rendered below the label.' },
+  { name: 'error', type: 'string', description: 'Error message to display. Automatically sets the error variant.' },
+  { name: 'indeterminate', type: 'boolean', default: 'false', description: 'Whether the checkbox is in an indeterminate (partially checked) state.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of the checkbox.' },
+  { name: 'variant', type: "'default' | 'error'", default: "'default'", description: 'Visual variant. Automatically set to error when an error message is provided.' },
+  { name: 'checked', type: 'boolean', description: 'Controlled checked state of the checkbox.' },
+  { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'Callback fired when the checked state changes.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the checkbox is disabled.' },
+  { name: 'id', type: 'string', description: 'HTML id attribute. Auto-generated if not provided.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply to the checkbox root.' },
+]} />
+
+The component also accepts all Radix UI `Checkbox.Root` props except `children`.

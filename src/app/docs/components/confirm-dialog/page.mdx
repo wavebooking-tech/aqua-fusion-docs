@@ -1,0 +1,55 @@
+export const metadata = {
+  title: 'ConfirmDialog',
+  description: 'Modal confirmation dialog with variant styling for default, danger, and warning actions.',
+};
+
+# ConfirmDialog
+
+A modal confirmation dialog for actions that require explicit user approval. Supports default, danger, and warning variants that style the confirm button accordingly. Handles async confirm callbacks with automatic loading state.
+
+## Import
+
+```tsx
+import { ConfirmDialog } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-confirmdialog--default" height={300} />
+
+## Usage
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<ConfirmDialog
+  open={open}
+  onClose={() => setOpen(false)}
+  onConfirm={async () => {
+    await deleteItem();
+    setOpen(false);
+  }}
+  title="Delete lesson"
+  description="Are you sure you want to delete this lesson? This action cannot be undone."
+  variant="danger"
+  confirmText="Delete"
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'open', type: 'boolean', description: 'Whether the dialog is open.', required: true },
+  { name: 'onClose', type: '() => void', description: 'Callback when the dialog should close.', required: true },
+  { name: 'onConfirm', type: '() => void | Promise<void>', description: 'Callback when the user confirms. Async functions show a loading spinner automatically.', required: true },
+  { name: 'title', type: 'string', description: 'Dialog title text.', required: true },
+  { name: 'description', type: 'string', description: 'Dialog description text shown below the title.' },
+  { name: 'children', type: 'ReactNode', description: 'Additional content rendered in the dialog body.' },
+  { name: 'confirmText', type: 'string', default: "'Confirm'", description: 'Label for the confirm button.' },
+  { name: 'cancelText', type: 'string', default: "'Cancel'", description: 'Label for the cancel button.' },
+  { name: 'variant', type: "'default' | 'danger' | 'warning'", default: "'default'", description: 'Visual variant that controls confirm button styling.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'External loading state for the confirm button.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the confirm button is disabled.' },
+  { name: 'icon', type: 'ReactNode', description: 'Icon displayed in the header area.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the dialog.' },
+]} />

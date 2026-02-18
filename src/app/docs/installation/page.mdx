@@ -1,0 +1,107 @@
+export const metadata = {
+  title: 'Installation',
+  description: 'Install Aqua Fusion and configure your project. Includes peer dependencies, Tailwind CSS preset, and theme setup.',
+};
+
+# Installation
+
+## Install from npm
+
+```bash
+npm install @wavebooking/aqua-fusion
+```
+
+## Required peer dependencies
+
+```bash
+npm install react react-dom tailwindcss
+```
+
+| Dependency | Version | Required |
+|-----------|---------|----------|
+| `react` | ^18.0.0 or ^19.0.0 | Yes |
+| `react-dom` | ^18.0.0 or ^19.0.0 | Yes |
+| `tailwindcss` | ^3.0.0 | Yes |
+
+## Optional peer dependencies
+
+Some components require additional packages. Install only what you need:
+
+```bash
+npm install date-fns        # For Calendar component
+npm install react-hook-form # For FormField integration
+```
+
+| Dependency | Version | Used by |
+|-----------|---------|---------|
+| `next` | ^14.0.0 or ^15.0.0 | `Img` component (Next.js Image wrapper) |
+| `react-hook-form` | ^7.0.0 | `FormField` with react-hook-form integration |
+| `date-fns` | ^3.0.0 | `Calendar` component date formatting |
+
+## Configure Tailwind CSS
+
+### Using the preset (recommended)
+
+```js
+// tailwind.config.js
+const { aquaFusionPreset } = require('@wavebooking/aqua-fusion/preset');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  presets: [aquaFusionPreset],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@wavebooking/aqua-fusion/dist/**/*.{js,mjs}',
+  ],
+};
+```
+
+The preset includes all design tokens: colors, border-radius, shadows, z-index, transitions, and fonts.
+
+### ESM syntax
+
+```ts
+// tailwind.config.ts
+import { aquaFusionPreset } from '@wavebooking/aqua-fusion/preset';
+
+export default {
+  presets: [aquaFusionPreset],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@wavebooking/aqua-fusion/dist/**/*.{js,mjs}',
+  ],
+};
+```
+
+## Import theme CSS
+
+**This step is required.** Without it, components render without proper styling.
+
+```tsx
+// app/layout.tsx (Next.js)
+import '@wavebooking/aqua-fusion/styles/theme.css';
+```
+
+The theme CSS defines 40+ CSS custom properties including:
+- Primary brand colors (`--aqua-color-primary-50` through `--aqua-color-primary-900`)
+- Semantic text colors (`--aqua-text-primary`, `--aqua-text-secondary`, etc.)
+- Background colors (`--aqua-bg-default`, `--aqua-bg-subtle`, etc.)
+- Border colors (`--aqua-border-default`, etc.)
+- Border radius, shadows, z-index, transitions
+- Font families (Inter for sans, Poppins for display)
+
+## Verify installation
+
+```tsx
+import { Button } from '@wavebooking/aqua-fusion';
+
+export default function Test() {
+  return (
+    <Button variant="default" onClick={() => alert('It works!')}>
+      Click me
+    </Button>
+  );
+}
+```
+
+If the button renders with a sky-blue background and white text, your setup is complete.

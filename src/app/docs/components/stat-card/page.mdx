@@ -1,0 +1,54 @@
+export const metadata = {
+  title: 'StatCard',
+  description: 'A card displaying a key metric with label, value, optional trend indicator, and link support.',
+};
+
+# StatCard
+
+A card component for displaying key metrics and statistics. Shows a label-value pair with optional icon, trend indicator (up/down/neutral with percentage), subtitle, and link support. Includes a loading skeleton state.
+
+## Import
+
+```tsx
+import { StatCard } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-statcard--default" height={250} />
+
+## Usage
+
+```tsx
+<StatCard
+  label="Total Bookings"
+  value={142}
+  icon={<Icon name="TicketIcon" />}
+  trend={{ value: 12, direction: 'up' }}
+  subtitle="Last 30 days"
+/>
+
+<StatCard
+  label="Revenue"
+  value="$4,250"
+  icon={<Icon name="CurrencyDollarIcon" />}
+  iconBgClass="bg-green-100 text-green-600"
+  href="/dashboard/earnings"
+/>
+
+<StatCard label="Sessions" value={8} loading />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Label or title for the statistic.', required: true },
+  { name: 'value', type: 'string | number', description: 'The main metric value to display.', required: true },
+  { name: 'icon', type: 'ReactNode', description: 'Icon displayed to the left of the stat.' },
+  { name: 'iconBgClass', type: 'string', default: "'bg-primary-100 text-primary-600'", description: 'Background and text color classes for the icon container.' },
+  { name: 'trend', type: '{ value: number; direction: "up" | "down" | "neutral" }', description: 'Trend indicator with percentage value and direction arrow.' },
+  { name: 'subtitle', type: 'string', description: 'Subtitle text shown below the value.' },
+  { name: 'href', type: 'string', description: 'Optional link URL. Makes the entire card a clickable Next.js Link.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Whether to show a skeleton loading state.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the card.' },
+]} />

@@ -1,0 +1,56 @@
+export const metadata = {
+  title: 'Progress',
+  description: 'Progress bar for showing completion status with size and color variants.',
+};
+
+# Progress
+
+A horizontal progress bar that visually communicates completion status. The value is clamped between 0 and 100, and an optional label displays the current percentage.
+
+## Import
+
+```tsx
+import { Progress } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-progress--default" height={150} />
+
+## Usage
+
+```tsx
+<Progress value={65} />
+```
+
+### With label
+
+```tsx
+<Progress value={42} showLabel />
+```
+
+### Sizes
+
+```tsx
+<Progress value={50} size="sm" />
+<Progress value={50} size="md" />
+<Progress value={50} size="lg" />
+```
+
+### Color variants
+
+```tsx
+<Progress value={100} variant="success" />
+<Progress value={60} variant="warning" />
+<Progress value={25} variant="error" />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'value', type: 'number', description: 'Progress value from 0 to 100. Values outside this range are clamped.', required: true },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Height of the progress bar.' },
+  { name: 'variant', type: "'default' | 'success' | 'warning' | 'error'", default: "'default'", description: 'Color variant of the filled portion.' },
+  { name: 'showLabel', type: 'boolean', default: 'false', description: 'Show a "Progress" label and percentage value above the bar.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the outer wrapper.' },
+]} />

@@ -1,0 +1,71 @@
+export const metadata = {
+  title: 'Icon',
+  description: 'Heroicons-based icon component with size and color variants, plus brand icon support.',
+};
+
+# Icon
+
+A unified icon component that wraps the full Heroicons library (outline and solid variants) along with brand icons for Google, Apple, Facebook, and Stripe. Provides consistent sizing, coloring, and accessibility attributes.
+
+## Import
+
+```tsx
+import { Icon } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-icon--default" height={200} />
+
+## Usage
+
+```tsx
+<Icon name="HomeIcon" />
+```
+
+### With size and color
+
+```tsx
+<Icon name="CheckCircleIcon" size="lg" color="success" />
+```
+
+### Solid variant
+
+```tsx
+<Icon name="HeartIcon" variant="solid" color="error" />
+```
+
+### Brand icons
+
+```tsx
+<Icon name="google" size="lg" />
+<Icon name="stripe" size="lg" />
+<Icon name="apple" size="lg" />
+<Icon name="facebook" size="lg" />
+```
+
+### Spinning loader
+
+```tsx
+<Icon name="ArrowPathIcon" spin />
+```
+
+### With accessibility label
+
+When an icon carries meaning rather than being purely decorative, provide a `label` to set `aria-label` and `role="img"`.
+
+```tsx
+<Icon name="BellIcon" label="Notifications" />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'name', type: 'IconName', description: 'The icon to render. Accepts any Heroicon name (e.g. "HomeIcon") or a brand name ("google", "apple", "facebook", "stripe").', required: true },
+  { name: 'variant', type: "'outline' | 'solid'", default: "'outline'", description: 'Heroicon style variant. Only applies to Heroicons, not brand icons.' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", default: "'md'", description: 'Icon size. Maps to 12px through 48px.' },
+  { name: 'color', type: "'default' | 'muted' | 'primary' | 'success' | 'warning' | 'error' | 'info' | 'inverse' | 'inherit'", default: "'inherit'", description: 'Semantic color variant for the icon.' },
+  { name: 'label', type: 'string', description: 'Accessible label. When provided, sets aria-label and role="img". When omitted, the icon is treated as decorative (aria-hidden).' },
+  { name: 'spin', type: 'boolean', default: 'false', description: 'Apply a CSS spin animation. Useful for loading indicators.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />

@@ -1,0 +1,62 @@
+export const metadata = {
+  title: 'Alert',
+  description: 'Inline feedback banners with severity variants and optional dismiss action.',
+};
+
+# Alert
+
+An inline alert component for displaying contextual feedback messages. Supports four severity variants with automatic icon selection, optional title, dismiss button, and custom action elements.
+
+## Import
+
+```tsx
+import { Alert } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-alert--default" height={300} />
+
+## Usage
+
+```tsx
+<Alert variant="info" title="Information">
+  This is an informational message.
+</Alert>
+```
+
+### Severity variants
+
+```tsx
+<Alert variant="success" title="Success">Operation completed.</Alert>
+<Alert variant="warning" title="Warning">Please review your input.</Alert>
+<Alert variant="error" title="Error">Something went wrong.</Alert>
+```
+
+### Dismissible with action
+
+```tsx
+<Alert
+  variant="warning"
+  title="Subscription expiring"
+  dismissible
+  onDismiss={() => console.log('dismissed')}
+  action={<Button size="sm" variant="outline">Renew</Button>}
+>
+  Your subscription expires in 3 days.
+</Alert>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'variant', type: "'default' | 'info' | 'success' | 'warning' | 'error'", default: "'info'", description: 'Severity variant controlling color scheme and default icon.' },
+  { name: 'title', type: 'string', description: 'Bold title displayed above the description.' },
+  { name: 'children', type: 'ReactNode', description: 'Description content rendered below the title.' },
+  { name: 'dismissible', type: 'boolean', default: 'false', description: 'Whether to show a close button in the top-right corner.' },
+  { name: 'onDismiss', type: '() => void', description: 'Callback when the dismiss button is clicked.' },
+  { name: 'icon', type: 'ReactNode', description: 'Custom icon element replacing the default variant icon.' },
+  { name: 'showIcon', type: 'boolean', default: 'true', description: 'Whether to display the leading icon.' },
+  { name: 'action', type: 'ReactNode', description: 'Action element (button, link) rendered below the description.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the alert container.' },
+]} />

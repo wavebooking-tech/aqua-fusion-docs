@@ -1,0 +1,77 @@
+export const metadata = {
+  title: 'Getting Started',
+  description: 'Get started with Aqua Fusion in your React project. Install, configure Tailwind CSS, and use your first component.',
+};
+
+# Getting Started
+
+Get up and running with Aqua Fusion in under 5 minutes.
+
+## Prerequisites
+
+- **Node.js** 18 or later
+- **React** 18 or 19
+- **Tailwind CSS** 3.x configured in your project
+
+## 1. Install the package
+
+```bash
+npm install @wavebooking/aqua-fusion
+```
+
+Peer dependencies (install if not already present):
+
+```bash
+npm install react react-dom tailwindcss
+```
+
+## 2. Configure Tailwind CSS
+
+Add the Aqua Fusion preset to your Tailwind configuration and include the package in your content paths:
+
+```js
+// tailwind.config.js
+const { aquaFusionPreset } = require('@wavebooking/aqua-fusion/preset');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  presets: [aquaFusionPreset],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@wavebooking/aqua-fusion/dist/**/*.{js,mjs}',
+  ],
+};
+```
+
+## 3. Import theme styles
+
+This step is **required**. The theme CSS defines CSS custom properties that all components depend on.
+
+```tsx
+// app/layout.tsx (Next.js) or your app entry point
+import '@wavebooking/aqua-fusion/styles/theme.css';
+```
+
+## 4. Use your first component
+
+```tsx
+import { Button, Typography, Card } from '@wavebooking/aqua-fusion';
+
+export function MyPage() {
+  return (
+    <Card>
+      <div className="space-y-4 p-6">
+        <Typography variant="h2">Hello, Aqua Fusion</Typography>
+        <Button variant="default">Get Started</Button>
+      </div>
+    </Card>
+  );
+}
+```
+
+## Next steps
+
+- [Installation](/docs/installation) — Detailed guide with optional peer dependencies
+- [Usage](/docs/usage) — Import patterns and component composition
+- [Theming](/docs/theming) — Customize colors, typography, and tokens
+- [Components](/docs/components) — Browse all available components

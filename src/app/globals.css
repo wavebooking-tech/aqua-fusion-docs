@@ -1,0 +1,42 @@
+@import '@wavebooking/aqua-fusion/styles/theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-content-primary;
+  }
+}
+
+pre > code {
+  display: block;
+  overflow-x: auto;
+}
+
+pre {
+  @apply rounded-ui-lg border border-line bg-surface-subtle p-4 text-sm leading-relaxed;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.docs-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb {
+  @apply bg-line rounded-full;
+}

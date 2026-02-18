@@ -1,0 +1,94 @@
+export const metadata = {
+  title: 'Tabs',
+  description: 'Tabbed navigation with underline and pills variants and animated indicators.',
+};
+
+# Tabs
+
+A tabbed navigation component with animated active indicators. Supports `underline` and `pills` visual variants, controlled and uncontrolled modes, disabled tabs, and responsive horizontal scrolling on mobile.
+
+## Import
+
+```tsx
+import { Tabs, TabsPanel } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-tabs--default" height={200} />
+
+## Usage
+
+```tsx
+<Tabs
+  tabs={[
+    { key: 'overview', label: 'Overview' },
+    { key: 'details', label: 'Details' },
+    { key: 'reviews', label: 'Reviews' },
+  ]}
+  defaultTab="overview"
+  onTabChange={(tab) => console.log(tab)}
+/>
+```
+
+### Pills variant
+
+```tsx
+<Tabs
+  tabs={[
+    { key: 'all', label: 'All' },
+    { key: 'active', label: 'Active' },
+    { key: 'archived', label: 'Archived', disabled: true },
+  ]}
+  variant="pills"
+  size="sm"
+/>
+```
+
+### With panel content
+
+```tsx
+const [activeTab, setActiveTab] = useState('tab1');
+
+<Tabs
+  tabs={[
+    { key: 'tab1', label: 'Tab 1' },
+    { key: 'tab2', label: 'Tab 2' },
+  ]}
+  activeTab={activeTab}
+  onTabChange={setActiveTab}
+/>
+{activeTab === 'tab1' && <TabsPanel>Content for Tab 1</TabsPanel>}
+{activeTab === 'tab2' && <TabsPanel>Content for Tab 2</TabsPanel>}
+```
+
+## Props
+
+### Tabs
+
+<PropsTable props={[
+  { name: 'tabs', type: 'TabItem<T>[]', description: 'Array of tab items, each with key, label, and optional disabled flag.', required: true },
+  { name: 'defaultTab', type: 'T', description: 'Initially active tab key (uncontrolled).' },
+  { name: 'activeTab', type: 'T', description: 'Controlled active tab key.' },
+  { name: 'onTabChange', type: '(tab: T) => void', description: 'Callback when the active tab changes.' },
+  { name: 'variant', type: "'underline' | 'pills'", default: "'underline'", description: 'Visual style of the tab indicators.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of the tab buttons.' },
+  { name: 'fullWidth', type: 'boolean', default: 'false', description: 'Whether tabs stretch to fill the full container width.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the outer wrapper.' },
+  { name: 'tabListClassName', type: 'string', description: 'Additional CSS class for the tab list nav element.' },
+]} />
+
+### TabItem
+
+<PropsTable props={[
+  { name: 'key', type: 'string', description: 'Unique identifier for the tab.', required: true },
+  { name: 'label', type: 'string', description: 'Display text for the tab button.', required: true },
+  { name: 'disabled', type: 'boolean', description: 'Whether the tab is disabled and not clickable.' },
+]} />
+
+### TabsPanel
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Panel content.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the panel wrapper.' },
+]} />

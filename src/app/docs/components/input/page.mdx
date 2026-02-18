@@ -1,0 +1,49 @@
+export const metadata = {
+  title: 'Input',
+  description: 'Text input supporting multiple types, sizes, multiline mode, and inline error messages.',
+};
+
+# Input
+
+A flexible text input component that supports multiple HTML input types, three size variants, a multiline mode (rendered as a `<textarea>`), and inline error message display. Built with `class-variance-authority` for consistent styling.
+
+## Import
+
+```tsx
+import { Input } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-input--default" height={200} />
+
+## Usage
+
+```tsx
+<Input placeholder="Enter your name" />
+
+<Input type="email" inputSize="lg" placeholder="Email address" />
+
+<Input
+  type="password"
+  error="Password must be at least 8 characters"
+/>
+
+<Input multiline placeholder="Write a message..." />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'type', type: "'text' | 'number' | 'email' | 'password' | 'date' | 'time' | 'file' | 'tel' | 'datetime-local'", default: "'text'", description: 'HTML input type. Ignored when multiline is enabled.' },
+  { name: 'inputSize', type: "'default' | 'sm' | 'lg'", default: "'default'", description: 'Size variant controlling the height of the input.' },
+  { name: 'multiline', type: "boolean | 'sm' | 'lg'", default: 'false', description: 'Renders a textarea instead of an input. Pass a string size to control the minimum height.' },
+  { name: 'error', type: 'boolean | string', default: 'false', description: 'Error state. When a string is provided, it is displayed as an inline error message.' },
+  { name: 'onChange', type: '(e: ChangeEvent) => void', description: 'Change event handler for the input or textarea.' },
+  { name: 'placeholder', type: 'string', description: 'Placeholder text shown when the input is empty.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the input is disabled.' },
+  { name: 'id', type: 'string', description: 'HTML id attribute. Used to associate the error message via aria-describedby.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply.' },
+]} />
+
+The component also accepts all standard HTML `<input>` and `<textarea>` attributes (except `size`, which is replaced by `inputSize`).

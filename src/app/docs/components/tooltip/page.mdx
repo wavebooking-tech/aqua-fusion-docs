@@ -1,0 +1,90 @@
+export const metadata = {
+  title: 'Tooltip',
+  description: 'Informational popup that appears on hover or focus with placement and variant options.',
+};
+
+# Tooltip
+
+A floating label that appears when the user hovers over or focuses on a trigger element. Automatically repositions itself to stay within the viewport and supports animated transitions.
+
+## Import
+
+```tsx
+import { Tooltip } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-tooltip--default" height={200} />
+
+## Usage
+
+```tsx
+<Tooltip content="Edit this item">
+  <button>Edit</button>
+</Tooltip>
+```
+
+### Placement
+
+```tsx
+<Tooltip content="Above" placement="top">
+  <button>Top</button>
+</Tooltip>
+
+<Tooltip content="Below" placement="bottom">
+  <button>Bottom</button>
+</Tooltip>
+
+<Tooltip content="Left side" placement="left">
+  <button>Left</button>
+</Tooltip>
+
+<Tooltip content="Right side" placement="right">
+  <button>Right</button>
+</Tooltip>
+```
+
+### Variants
+
+```tsx
+<Tooltip content="Dark tooltip" variant="default">
+  <button>Default</button>
+</Tooltip>
+
+<Tooltip content="Light tooltip" variant="light">
+  <button>Light</button>
+</Tooltip>
+
+<Tooltip content="Brand tooltip" variant="primary">
+  <button>Primary</button>
+</Tooltip>
+```
+
+### Custom delay
+
+```tsx
+<Tooltip content="Appears quickly" delay={100}>
+  <button>Fast</button>
+</Tooltip>
+```
+
+### Disabled
+
+```tsx
+<Tooltip content="This won't show" disabled>
+  <button>No tooltip</button>
+</Tooltip>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'content', type: 'React.ReactNode', description: 'The tooltip content to display. Can be text or any React node.', required: true },
+  { name: 'children', type: 'React.ReactElement', description: 'The trigger element that the tooltip is attached to. Must be a single React element.', required: true },
+  { name: 'placement', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", description: 'Preferred placement of the tooltip relative to the trigger.' },
+  { name: 'variant', type: "'default' | 'light' | 'primary'", default: "'default'", description: 'Visual style variant. "default" is dark, "light" has a bordered white background, "primary" uses the brand color.' },
+  { name: 'delay', type: 'number', default: '300', description: 'Delay in milliseconds before the tooltip appears on hover.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'When true, the tooltip will not appear on hover or focus.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the tooltip element.' },
+]} />

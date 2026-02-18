@@ -1,0 +1,59 @@
+export const metadata = {
+  title: 'Switch',
+  description: 'Animated toggle switch for boolean settings with label and description support.',
+};
+
+# Switch
+
+An animated toggle switch component for boolean settings. Built with Framer Motion for smooth spring-based animations. Supports labels, descriptions, color variants, and configurable label positioning.
+
+## Import
+
+```tsx
+import { Switch } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-switch--default" height={200} />
+
+## Usage
+
+```tsx
+<Switch
+  checked={enabled}
+  onChange={(e) => setEnabled(e.target.checked)}
+/>
+
+<Switch
+  label="Email notifications"
+  description="Receive weekly digest emails"
+  checked={notifications}
+  onChange={handleChange}
+/>
+
+<Switch
+  label="Dark mode"
+  variant="success"
+  size="lg"
+  labelPosition="left"
+  checked={darkMode}
+  onChange={handleChange}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Label text displayed next to the switch.' },
+  { name: 'description', type: 'string', description: 'Description text rendered below the label.' },
+  { name: 'labelPosition', type: "'left' | 'right'", default: "'right'", description: 'Position of the label relative to the switch.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of the switch track and thumb.' },
+  { name: 'variant', type: "'default' | 'success' | 'warning' | 'error'", default: "'default'", description: 'Color variant applied when the switch is checked.' },
+  { name: 'checked', type: 'boolean', default: 'false', description: 'Controlled checked state of the switch.' },
+  { name: 'onChange', type: '(e: ChangeEvent<HTMLInputElement>) => void', description: 'Change event handler fired when the switch is toggled.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the switch is disabled.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply to the switch track.' },
+]} />
+
+The component also accepts all standard HTML `<input>` attributes (except `size`).

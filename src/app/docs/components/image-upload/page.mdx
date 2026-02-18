@@ -1,0 +1,54 @@
+export const metadata = {
+  title: 'ImageUpload',
+  description: 'Single image upload with drag-and-drop, preview, and configurable shape variants.',
+};
+
+# ImageUpload
+
+A single-image upload component with drag-and-drop support, inline preview, loading state, and file validation. Available in square and circle variants, making it suitable for both general image fields and profile avatar uploads.
+
+## Import
+
+```tsx
+import { ImageUpload } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-imageupload--default" height={300} />
+
+## Usage
+
+```tsx
+<ImageUpload
+  value={imageUrl}
+  onChange={(url) => setImageUrl(url)}
+  onUpload={async (file) => {
+    const url = await uploadToStorage(file);
+    return url;
+  }}
+/>
+
+<ImageUpload
+  variant="circle"
+  size={160}
+  emptyIcon="UserCircleIcon"
+  onChange={handleChange}
+  onUpload={handleUpload}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'onChange', type: '(url: string | null) => void', description: 'Callback fired when the image changes. Receives the URL or null when removed.', required: true },
+  { name: 'onUpload', type: '(file: File) => Promise<string>', description: 'Async function that uploads the file and returns the resulting URL.', required: true },
+  { name: 'value', type: 'string', description: 'Current image URL for controlled usage.' },
+  { name: 'variant', type: "'square' | 'circle'", default: "'square'", description: 'Shape variant of the upload area.' },
+  { name: 'size', type: 'number', default: '128', description: 'Width and height of the upload area in pixels.' },
+  { name: 'maxSize', type: 'number', default: '5242880', description: 'Maximum file size in bytes (default is 5 MB).' },
+  { name: 'emptyIcon', type: 'HeroIconName', description: "Icon shown when no image is set. Defaults to 'UserCircleIcon' for circle and 'PhotoIcon' for square." },
+  { name: 'labels', type: 'ImageUploadLabels', description: 'Custom label strings for internationalization (uploadText, fileSizeError, fileTypeError, uploadError, removeAriaLabel, uploadAriaLabel).' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the upload is disabled.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply to the upload area.' },
+]} />

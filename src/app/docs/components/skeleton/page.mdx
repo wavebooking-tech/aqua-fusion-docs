@@ -1,0 +1,60 @@
+export const metadata = {
+  title: 'Skeleton',
+  description: 'Placeholder loading skeleton animations for content that is still loading.',
+};
+
+# Skeleton
+
+A low-level building block for constructing placeholder loading states. Renders an animated pulse rectangle that you size and shape with utility classes to match the content it replaces.
+
+## Import
+
+```tsx
+import { Skeleton } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-skeleton--default" height={200} />
+
+## Usage
+
+```tsx
+<Skeleton className="h-4 w-48" />
+```
+
+### Card skeleton
+
+Compose multiple Skeleton elements to create a loading placeholder for a card layout.
+
+```tsx
+<div className="space-y-3 rounded-lg border p-4">
+  <Skeleton className="h-32 w-full" />
+  <Skeleton className="h-4 w-3/4" />
+  <Skeleton className="h-4 w-1/2" />
+  <div className="flex gap-2">
+    <Skeleton className="h-8 w-20" />
+    <Skeleton className="h-8 w-20" />
+  </div>
+</div>
+```
+
+### Avatar skeleton
+
+```tsx
+<div className="flex items-center gap-3">
+  <Skeleton className="h-10 w-10 rounded-full" />
+  <div className="space-y-2">
+    <Skeleton className="h-4 w-32" />
+    <Skeleton className="h-3 w-24" />
+  </div>
+</div>
+```
+
+## Props
+
+The `Skeleton` component accepts all standard `div` HTML attributes. Use `className` to control dimensions, border radius, and any additional styling.
+
+<PropsTable props={[
+  { name: 'className', type: 'string', description: 'CSS classes to control width, height, border-radius, and other visual properties of the skeleton.' },
+]} />

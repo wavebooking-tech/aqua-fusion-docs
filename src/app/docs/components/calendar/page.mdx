@@ -1,0 +1,61 @@
+export const metadata = {
+  title: 'Calendar',
+  description: 'Date picker calendar component styled for the Aqua Fusion design system.',
+};
+
+# Calendar
+
+A styled date picker calendar built on top of `react-calendar`. Supports date selection, custom tile rendering, and locale formatting.
+
+## Import
+
+```tsx
+import { Calendar } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-calendar--default" height={380} />
+
+## Usage
+
+```tsx
+const [date, setDate] = useState<Date | null>(new Date());
+
+<Calendar value={date} onChange={(value) => setDate(value as Date)} />
+```
+
+### With custom tile content
+
+```tsx
+<Calendar
+  value={selectedDate}
+  onChange={handleChange}
+  tileContent={({ date }) => {
+    const hasEvent = events.includes(date.toDateString());
+    return hasEvent ? <div className="h-1 w-1 rounded-full bg-primary-500" /> : null;
+  }}
+/>
+```
+
+### Without double navigation
+
+By default, double navigation arrows (year skip) are hidden. Set `showDoubleNavigation` to enable them.
+
+```tsx
+<Calendar value={date} onChange={handleChange} showDoubleNavigation />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'value', type: 'Date | null', description: 'Currently selected date.' },
+  { name: 'onChange', type: '(value: Value) => void', description: 'Callback fired when a date is selected.' },
+  { name: 'onActiveStartDateChange', type: '(props: { activeStartDate: Date | null }) => void', description: 'Callback fired when the visible month or year changes.' },
+  { name: 'tileContent', type: '(props: { date: Date; view: string }) => React.ReactNode', description: 'Custom content to render inside each calendar tile.' },
+  { name: 'tileClassName', type: '(props: { date: Date }) => string', description: 'Custom class names for individual tiles.' },
+  { name: 'minDetail', type: "'month' | 'year' | 'decade' | 'century'", default: "'month'", description: 'Minimum detail level the calendar can show.' },
+  { name: 'showDoubleNavigation', type: 'boolean', default: 'false', description: 'Show double navigation arrows for year-level navigation.' },
+  { name: 'locale', type: 'string', default: "'en-US'", description: 'Locale string for date formatting.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the calendar wrapper.' },
+]} />

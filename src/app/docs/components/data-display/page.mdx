@@ -1,0 +1,48 @@
+export const metadata = {
+  title: 'DataDisplay',
+  description: 'A standardized label-value pair for presenting read-only data in detail views.',
+};
+
+# DataDisplay
+
+A standardized label-value display for showing read-only data. Supports vertical and horizontal layouts, multiple sizes, and optional icons. Use this pattern for consistent data presentation in detail views and summary panels.
+
+## Import
+
+```tsx
+import { DataDisplay } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-datadisplay--default" height={300} />
+
+## Usage
+
+```tsx
+<DataDisplay label="Email" value="john@example.com" />
+
+<DataDisplay
+  label="Status"
+  value={<Badge variant="success">Active</Badge>}
+  direction="horizontal"
+/>
+
+<DataDisplay
+  label="Location"
+  value="Bondi Beach"
+  icon={<Icon name="MapPinIcon" />}
+  size="lg"
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Label text for the data field.', required: true },
+  { name: 'value', type: 'ReactNode', description: 'Value to display. Can be text or any React node.', required: true },
+  { name: 'icon', type: 'ReactNode', description: 'Icon displayed before the label.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper.' },
+  { name: 'direction', type: "'vertical' | 'horizontal'", default: "'vertical'", description: 'Layout direction. Vertical stacks label above value; horizontal places them side by side.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant controlling text and icon sizes.' },
+]} />

@@ -1,0 +1,47 @@
+export const metadata = {
+  title: 'PageHeader',
+  description: 'A standardized page header with title, subtitle, breadcrumbs, badge, and action buttons.',
+};
+
+# PageHeader
+
+A standardized page header that provides consistent title and subtitle styling, right-aligned action buttons, breadcrumb navigation support, and an optional badge or status indicator next to the title.
+
+## Import
+
+```tsx
+import { PageHeader } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-pageheader--default" height={200} />
+
+## Usage
+
+```tsx
+<PageHeader
+  title="Lessons"
+  subtitle="Manage your surf lessons"
+  actions={<Button>Create Lesson</Button>}
+  badge={<Badge variant="success">Live</Badge>}
+/>
+
+<PageHeader
+  title="Session Details"
+  breadcrumbs={<Breadcrumb items={[{ label: 'Sessions', href: '/sessions' }]} />}
+  size="lg"
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Main title of the page.', required: true },
+  { name: 'subtitle', type: 'string', description: 'Subtitle or description shown below the title.' },
+  { name: 'actions', type: 'ReactNode', description: 'Action buttons or elements aligned to the right.' },
+  { name: 'breadcrumbs', type: 'ReactNode', description: 'Breadcrumb or back navigation shown above the title.' },
+  { name: 'badge', type: 'ReactNode', description: 'Badge or status indicator displayed next to the title.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the header wrapper.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Title size variant.' },
+]} />

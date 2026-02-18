@@ -1,0 +1,72 @@
+export const metadata = {
+  title: 'ImageCarousel',
+  description: 'Swipeable image carousel powered by Embla Carousel with navigation and dot indicators.',
+};
+
+# ImageCarousel
+
+A responsive image carousel built on Embla Carousel. Features looping navigation, dot indicators, previous/next buttons that appear on hover, and automatic fallback handling for broken images.
+
+## Import
+
+```tsx
+import { ImageCarousel } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-imagecarousel--default" height={350} />
+
+## Usage
+
+```tsx
+<ImageCarousel
+  images={['/img/photo1.jpg', '/img/photo2.jpg', '/img/photo3.jpg']}
+  alt="Surf lesson"
+/>
+```
+
+### With fallback image
+
+```tsx
+<ImageCarousel
+  images={['/img/photo1.jpg', '/img/broken-link.jpg']}
+  fallbackSrc="/images/placeholder.jpg"
+  alt="Lesson photos"
+/>
+```
+
+### Fit mode
+
+Use `mode="fit"` to fill the parent container instead of using an aspect ratio. The parent must have a defined height.
+
+```tsx
+<div className="h-64">
+  <ImageCarousel
+    images={['/img/photo1.jpg', '/img/photo2.jpg']}
+    mode="fit"
+    alt="Full height carousel"
+  />
+</div>
+```
+
+### Custom aspect ratio
+
+```tsx
+<ImageCarousel
+  images={['/img/photo1.jpg', '/img/photo2.jpg']}
+  aspectRatio="4/3"
+  alt="Square-ish carousel"
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'images', type: 'string[]', description: 'Array of image URLs to display in the carousel.', required: true },
+  { name: 'mode', type: "'aspect' | 'fit'", default: "'aspect'", description: 'Display mode. "aspect" uses an aspect ratio container, "fit" fills the parent height.' },
+  { name: 'aspectRatio', type: 'string', default: "'16/9'", description: 'CSS aspect ratio when mode is "aspect" (e.g. "16/9", "4/3").' },
+  { name: 'fallbackSrc', type: 'string', description: 'Fallback image shown when an individual image fails to load, or when the images array is empty.' },
+  { name: 'alt', type: 'string', description: 'Base alt text for images. For multiple images, " - Photo N of M" is appended automatically.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the carousel container.' },
+]} />

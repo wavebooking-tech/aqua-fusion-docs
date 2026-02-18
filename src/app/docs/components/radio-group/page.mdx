@@ -1,0 +1,54 @@
+export const metadata = {
+  title: 'RadioGroup',
+  description: 'Radio button group for selecting a single value from a list of options.',
+};
+
+# RadioGroup
+
+A radio button group component for selecting a single value from a list of options. Supports descriptions per option, disabled state, and a custom render function for labels.
+
+## Import
+
+```tsx
+import { RadioGroup } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-radiogroup--default" height={200} />
+
+## Usage
+
+```tsx
+<RadioGroup
+  name="plan"
+  options={[
+    { value: 'free', label: 'Free' },
+    { value: 'pro', label: 'Pro', description: 'Unlimited access' },
+    { value: 'enterprise', label: 'Enterprise' },
+  ]}
+  value={selected}
+  onChange={(value) => setSelected(value)}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'options', type: 'RadioOption[]', description: 'Array of options. Each option has a value, label, and optional description.', required: true },
+  { name: 'value', type: 'string', description: 'The currently selected value (controlled).' },
+  { name: 'onChange', type: '(value: string) => void', description: 'Callback fired when the selected value changes.' },
+  { name: 'name', type: 'string', description: 'HTML name attribute shared by all radio inputs in the group.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether all radio options are disabled.' },
+  { name: 'renderLabel', type: '(option: RadioOption) => ReactNode', description: 'Custom render function for option labels.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the group container.' },
+  { name: 'classNameOption', type: 'string', description: 'Additional CSS classes applied to each option wrapper.' },
+]} />
+
+### RadioOption
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `value` | `string` | The value of the option. |
+| `label` | `string` | Display text for the option. |
+| `description` | `string` | Optional description text below the label. |

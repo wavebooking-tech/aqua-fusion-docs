@@ -1,0 +1,47 @@
+export const metadata = {
+  title: 'Divider',
+  description: 'Horizontal separator with optional centered text content.',
+};
+
+# Divider
+
+A horizontal rule component that visually separates sections of content. Can optionally display centered text or other content between the two lines.
+
+## Import
+
+```tsx
+import { Divider } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-divider--default" height={100} />
+
+## Usage
+
+```tsx
+<Divider />
+```
+
+### With text
+
+```tsx
+<Divider>or continue with</Divider>
+```
+
+### Custom styling
+
+```tsx
+<Divider lineClassName="border-primary-300" contentClassName="text-primary-500">
+  Section
+</Divider>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Optional content displayed centered between the divider lines.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the outer flex container.' },
+  { name: 'contentClassName', type: 'string', description: 'Additional CSS class for the centered content span.' },
+  { name: 'lineClassName', type: 'string', description: 'Additional CSS class for the horizontal line elements.' },
+]} />

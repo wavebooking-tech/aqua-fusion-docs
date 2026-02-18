@@ -1,0 +1,42 @@
+export const metadata = {
+  title: 'EmptyState',
+  description: 'A placeholder component for when there is no data to display, with icon, message, and action support.',
+};
+
+# EmptyState
+
+A standardized empty state component for when there is no data to display. Provides helpful context through an icon, title, description, and optional primary and secondary actions to guide users toward next steps.
+
+## Import
+
+```tsx
+import { EmptyState } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-emptystate--default" height={300} />
+
+## Usage
+
+```tsx
+<EmptyState
+  icon={<Icon name="AcademicCapIcon" />}
+  title="No lessons yet"
+  description="Get started by creating your first lesson."
+  action={<Button>Create Lesson</Button>}
+  secondaryAction={<Button variant="ghost">Learn more</Button>}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Main title text.', required: true },
+  { name: 'icon', type: 'ReactNode', description: 'Icon displayed above the title.' },
+  { name: 'description', type: 'string', description: 'Description text shown below the title.' },
+  { name: 'action', type: 'ReactNode', description: 'Primary action element, typically a Button.' },
+  { name: 'secondaryAction', type: 'ReactNode', description: 'Secondary action element such as a link or ghost button.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant controlling padding, icon size, and text sizes.' },
+]} />

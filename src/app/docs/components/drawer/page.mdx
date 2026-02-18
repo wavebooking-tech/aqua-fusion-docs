@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'Drawer',
+  description: 'Bottom sheet on mobile and centered modal on desktop with smooth animations.',
+};
+
+# Drawer
+
+A responsive overlay panel that renders as a bottom sheet on mobile and a centered modal on desktop. Features smooth enter/exit animations, backdrop overlay, Escape key dismissal, and scroll locking.
+
+## Import
+
+```tsx
+import { Drawer } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-drawer--default" height={400} />
+
+## Usage
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<>
+  <Button onClick={() => setOpen(true)}>Open Drawer</Button>
+  <Drawer open={open} onClose={() => setOpen(false)} title="Drawer Title">
+    <p>Drawer content goes here.</p>
+  </Drawer>
+</>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'open', type: 'boolean', description: 'Whether the drawer is visible.', required: true },
+  { name: 'onClose', type: '() => void', description: 'Callback invoked when the drawer should close (backdrop click, Escape key).', required: true },
+  { name: 'children', type: 'ReactNode', description: 'Content rendered inside the drawer body.', required: true },
+  { name: 'title', type: 'string', description: 'Title displayed in the drawer header.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the drawer panel.' },
+]} />

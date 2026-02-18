@@ -1,0 +1,57 @@
+export const metadata = {
+  title: 'Loader',
+  description: 'Loading spinner indicator with size and color variants.',
+};
+
+# Loader
+
+A simple spinning indicator used to communicate that content is loading. Renders as a rotating border circle with configurable size and color.
+
+## Import
+
+```tsx
+import { Loader } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-loader--default" height={150} />
+
+## Usage
+
+```tsx
+<Loader />
+```
+
+### Sizes
+
+```tsx
+<Loader size="sm" />
+<Loader size="default" />
+<Loader size="lg" />
+```
+
+### Color variants
+
+```tsx
+<Loader variant="default" />
+<Loader variant="white" />
+<Loader variant="gray" />
+```
+
+### Inside a button
+
+```tsx
+<Button disabled>
+  <Loader size="sm" variant="white" />
+  Loading...
+</Button>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'size', type: "'sm' | 'default' | 'lg'", default: "'default'", description: 'Size of the spinner. sm is 16px, default is 24px, lg is 48px.' },
+  { name: 'variant', type: "'default' | 'white' | 'gray'", default: "'default'", description: 'Color variant. "default" uses the primary brand color, "white" for dark backgrounds, "gray" for subtle contexts.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />

@@ -1,0 +1,79 @@
+export const metadata = {
+  title: 'Popover',
+  description: 'Floating content panel anchored to a trigger element.',
+};
+
+# Popover
+
+A floating content panel that appears anchored to a trigger element. Built on Radix UI Popover primitives with enter/exit animations. Available as both a convenience wrapper (`PopoverWrapper`) and individual primitives for full control.
+
+## Import
+
+```tsx
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverAnchor,
+  PopoverClose,
+  PopoverWrapper,
+} from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-popover--default" height={250} />
+
+## Usage
+
+### Simple wrapper
+
+```tsx
+<PopoverWrapper
+  trigger={<Button>Open Popover</Button>}
+  side="bottom"
+  align="start"
+>
+  <p>Popover content goes here.</p>
+</PopoverWrapper>
+```
+
+### Primitives for full control
+
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button>Trigger</Button>
+  </PopoverTrigger>
+  <PopoverContent side="right" align="start">
+    <p>Content with full control over placement.</p>
+    <PopoverClose asChild>
+      <Button variant="outline" size="sm">Close</Button>
+    </PopoverClose>
+  </PopoverContent>
+</Popover>
+```
+
+## Props
+
+### PopoverWrapper
+
+<PropsTable props={[
+  { name: 'trigger', type: 'ReactNode', description: 'The element that triggers the popover.', required: true },
+  { name: 'children', type: 'ReactNode', description: 'Content displayed inside the popover panel.', required: true },
+  { name: 'side', type: "'top' | 'right' | 'bottom' | 'left'", default: "'bottom'", description: 'Side of the trigger where the popover is rendered.' },
+  { name: 'align', type: "'start' | 'center' | 'end'", default: "'center'", description: 'Alignment of the popover relative to the trigger.' },
+  { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+  { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Callback when the open state changes.' },
+  { name: 'contentClassName', type: 'string', description: 'Additional CSS class for the popover content panel.' },
+  { name: 'showArrow', type: 'boolean', description: 'Whether to show an arrow pointing to the trigger.' },
+]} />
+
+### PopoverContent
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Content rendered inside the popover.', required: true },
+  { name: 'align', type: "'start' | 'center' | 'end'", default: "'center'", description: 'Alignment of the content relative to the trigger.' },
+  { name: 'sideOffset', type: 'number', default: '4', description: 'Distance in pixels between the trigger and the popover.' },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the content container.' },
+]} />

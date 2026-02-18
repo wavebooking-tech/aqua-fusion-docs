@@ -1,0 +1,42 @@
+export const metadata = {
+  title: 'SectionHeader',
+  description: 'A section header for dividing page content with title, description, icon, and an action slot.',
+};
+
+# SectionHeader
+
+A standardized section header for dividing page content into logical groups. Supports a title, description, leading icon, action slot, and an optional bottom border for visual separation.
+
+## Import
+
+```tsx
+import { SectionHeader } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-sectionheader--default" height={200} />
+
+## Usage
+
+```tsx
+<SectionHeader
+  title="Students"
+  description="Manage enrolled students for this session."
+  icon={<Icon name="UserGroupIcon" />}
+  action={<Button size="sm">Add Student</Button>}
+  bordered
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Section title text.', required: true },
+  { name: 'description', type: 'string', description: 'Optional description shown below the title.' },
+  { name: 'action', type: 'ReactNode', description: 'Action element such as a button or link, aligned to the right.' },
+  { name: 'icon', type: 'ReactNode', description: 'Icon displayed before the title.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant controlling title, description, and icon sizes.' },
+  { name: 'bordered', type: 'boolean', default: 'false', description: 'Whether to show a bottom border below the header.' },
+]} />

@@ -1,0 +1,87 @@
+export const metadata = {
+  title: 'Dialog',
+  description: 'Accessible modal dialog for focused user interactions.',
+};
+
+# Dialog
+
+An accessible modal dialog component with backdrop overlay, focus trapping, and Escape key dismissal. Uses compound sub-components for structured header, title, description, and footer sections.
+
+## Import
+
+```tsx
+import {
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-dialog--default" height={400} />
+
+## Usage
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<>
+  <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+  <Dialog open={open} onClose={() => setOpen(false)}>
+    <DialogHeader>
+      <DialogTitle>Confirm Action</DialogTitle>
+      <DialogDescription>
+        Are you sure you want to proceed? This action cannot be undone.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button onClick={() => setOpen(false)}>Confirm</Button>
+    </DialogFooter>
+  </Dialog>
+</>
+```
+
+## Props
+
+### Dialog
+
+<PropsTable props={[
+  { name: 'open', type: 'boolean', description: 'Whether the dialog is visible.', required: true },
+  { name: 'onClose', type: '() => void', description: 'Callback when the dialog should close (backdrop click, Escape key).', required: true },
+  { name: 'children', type: 'ReactNode', description: 'Dialog content, typically composed of DialogHeader and DialogFooter.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the dialog panel.' },
+  { name: 'aria-labelledby', type: 'string', description: 'ID of the element that labels the dialog (should match a DialogTitle id).' },
+  { name: 'aria-describedby', type: 'string', description: 'ID of the element that describes the dialog (should match a DialogDescription id).' },
+]} />
+
+### DialogHeader
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Header content, typically DialogTitle and DialogDescription.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the header wrapper.' },
+]} />
+
+### DialogTitle
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Title text content.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the title element.' },
+]} />
+
+### DialogDescription
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Description text content.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the description element.' },
+]} />
+
+### DialogFooter
+
+<PropsTable props={[
+  { name: 'children', type: 'ReactNode', description: 'Footer content, typically action buttons.', required: true },
+  { name: 'className', type: 'string', description: 'Additional CSS class for the footer wrapper.' },
+]} />

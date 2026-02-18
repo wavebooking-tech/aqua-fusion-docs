@@ -1,0 +1,71 @@
+export const metadata = {
+  title: 'useDisclosure',
+  description: 'A hook for managing boolean open/close states for modals, drawers, and toggleable UI.',
+};
+
+# useDisclosure
+
+A hook for managing boolean open/close states. Useful for modals, drawers, dropdowns, accordions, and any toggleable UI element. Provides open, close, and toggle functions with optional lifecycle callbacks.
+
+## Import
+
+```tsx
+import { useDisclosure } from '@wavebooking/aqua-fusion';
+```
+
+## Usage
+
+```tsx
+function ModalExample() {
+  const { isOpen, open, close } = useDisclosure();
+
+  return (
+    <>
+      <Button onClick={open}>Open Modal</Button>
+      <Dialog open={isOpen} onClose={close}>
+        <DialogHeader>
+          <DialogTitle>Confirm Action</DialogTitle>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" onClick={close}>Cancel</Button>
+          <Button onClick={close}>Confirm</Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+```
+
+### With callbacks
+
+```tsx
+const { isOpen, toggle } = useDisclosure({
+  defaultOpen: false,
+  onOpen: () => trackEvent('menu_opened'),
+  onClose: () => trackEvent('menu_closed'),
+});
+```
+
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `options` | `UseDisclosureOptions` | Optional configuration object. |
+
+### UseDisclosureOptions
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `defaultOpen` | `boolean` | `false` | Initial open state. |
+| `onOpen` | `() => void` | -- | Callback fired when the disclosure opens. |
+| `onClose` | `() => void` | -- | Callback fired when the disclosure closes. |
+
+## Return Value
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `isOpen` | `boolean` | Current open state. |
+| `open` | `() => void` | Function to set state to open. |
+| `close` | `() => void` | Function to set state to closed. |
+| `toggle` | `() => void` | Function to toggle between open and closed. |
+| `setIsOpen` | `(value: boolean) => void` | Function to set the open state directly. |

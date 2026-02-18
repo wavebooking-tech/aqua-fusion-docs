@@ -1,0 +1,52 @@
+export const metadata = {
+  title: 'Select',
+  description: 'Dropdown select for choosing a single option from a list.',
+};
+
+# Select
+
+A native dropdown select component with size variants, a placeholder option, and inline error message display. Styled with a custom chevron indicator and built with `class-variance-authority`.
+
+## Import
+
+```tsx
+import { Select } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-select--default" height={200} />
+
+## Usage
+
+```tsx
+<Select
+  options={[
+    { value: 'au', label: 'Australia' },
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+  ]}
+  placeholder="Choose a country"
+/>
+
+<Select
+  options={options}
+  inputSize="lg"
+  error="Please select an option"
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'options', type: "Array<{ value: string; label: string }>", description: 'Array of selectable options with value and label.', required: true },
+  { name: 'placeholder', type: 'string', default: "'Select an option...'", description: 'Text shown as the first disabled option.' },
+  { name: 'inputSize', type: "'default' | 'sm' | 'lg'", default: "'default'", description: 'Size variant controlling the height of the select.' },
+  { name: 'error', type: 'boolean | string', default: 'false', description: 'Error state. When a string is provided, it is displayed as an inline error message.' },
+  { name: 'value', type: 'string', description: 'Controlled value of the select.' },
+  { name: 'onChange', type: '(e: ChangeEvent<HTMLSelectElement>) => void', description: 'Change event handler.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the select is disabled.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes to apply.' },
+]} />
+
+The component also accepts all standard HTML `<select>` attributes (except `size`, which is replaced by `inputSize`).

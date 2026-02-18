@@ -1,0 +1,64 @@
+export const metadata = {
+  title: 'Badge',
+  description: 'Small status descriptors for UI elements with semantic color variants.',
+};
+
+# Badge
+
+Small, inline status descriptors used to label, categorize, or indicate the state of UI elements. Supports semantic color variants, optional icons, and dismissible behavior.
+
+## Import
+
+```tsx
+import { Badge } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-badge--default" height={200} />
+
+## Usage
+
+```tsx
+<Badge variant="success">Active</Badge>
+```
+
+### With icon
+
+```tsx
+<Badge variant="warning" showIcon>
+  Pending
+</Badge>
+```
+
+### Dismissible
+
+```tsx
+<Badge variant="info" dismissible onDismiss={() => console.log('dismissed')}>
+  New
+</Badge>
+```
+
+### Custom icon
+
+```tsx
+import { Icon } from '@wavebooking/aqua-fusion';
+
+<Badge variant="primary" icon={<Icon name="StarIcon" size="xs" />} showIcon>
+  Featured
+</Badge>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'children', type: 'React.ReactNode', description: 'The badge label content.', required: true },
+  { name: 'variant', type: "'default' | 'primary' | 'success' | 'warning' | 'error' | 'info' | 'purple' | 'indigo' | 'pink' | 'orange' | 'amber'", default: "'default'", description: 'Semantic color variant of the badge.' },
+  { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", default: "'sm'", description: 'Size of the badge.' },
+  { name: 'icon', type: 'React.ReactNode', description: 'Custom icon element. When omitted, a default icon matching the variant is used.' },
+  { name: 'showIcon', type: 'boolean', default: 'false', description: 'Whether to display the icon alongside the label.' },
+  { name: 'dismissible', type: 'boolean', default: 'false', description: 'Whether the badge shows a dismiss button.' },
+  { name: 'onDismiss', type: '() => void', description: 'Callback fired when the dismiss button is clicked.' },
+  { name: 'animate', type: 'boolean', default: 'false', description: 'Enable enter/exit animations via Framer Motion.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />

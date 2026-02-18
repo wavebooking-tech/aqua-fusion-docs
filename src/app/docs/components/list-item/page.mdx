@@ -1,0 +1,66 @@
+export const metadata = {
+  title: 'ListItem',
+  description: 'A versatile list item with leading/trailing slots, link support, selection state, and loading skeleton.',
+};
+
+# ListItem
+
+A versatile list item component with leading and trailing content slots, link and click support, selection highlighting, loading skeleton, and configurable dividers. Pairs with the `List` wrapper for automatic divider management.
+
+## Import
+
+```tsx
+import { ListItem, List } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-listitem--default" height={400} />
+
+## Usage
+
+```tsx
+<List divider="full">
+  <ListItem
+    title="Beginner Surf Lesson"
+    description="Bondi Beach - 9:00 AM"
+    leading={<Avatar src="/instructor.jpg" />}
+    trailing={<Badge variant="success">Active</Badge>}
+    href="/lessons/123"
+    showChevron
+  />
+  <ListItem
+    title="Advanced Techniques"
+    description="Manly Beach - 2:00 PM"
+    leading={<Avatar src="/instructor2.jpg" />}
+    trailing={<Badge variant="default">Draft</Badge>}
+    onClick={() => openLesson('456')}
+  />
+</List>
+```
+
+## ListItem Props
+
+<PropsTable props={[
+  { name: 'title', type: 'ReactNode', description: 'Primary content or title text.', required: true },
+  { name: 'description', type: 'ReactNode', description: 'Secondary content or description text.' },
+  { name: 'leading', type: 'ReactNode', description: 'Left-side content such as an icon, avatar, or checkbox.' },
+  { name: 'trailing', type: 'ReactNode', description: 'Right-side content such as a badge, action button, or metadata.' },
+  { name: 'onClick', type: '() => void', description: 'Click handler. Makes the item interactive.' },
+  { name: 'href', type: 'string', description: 'Link URL. Makes the entire item a clickable Next.js Link.' },
+  { name: 'showChevron', type: 'boolean', default: 'false', description: 'Whether to show a chevron-right icon at the end.' },
+  { name: 'selected', type: 'boolean', default: 'false', description: 'Whether the item is in a selected state.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the item is disabled.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Whether to show a skeleton loading placeholder.' },
+  { name: 'divider', type: "'none' | 'full' | 'inset'", default: "'none'", description: 'Divider style between items.' },
+  { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant controlling padding and text sizes.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+]} />
+
+## List Props
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `children` | `ReactNode` | -- | List items to render. |
+| `divider` | `'none' \| 'full' \| 'inset'` | `'none'` | Divider style applied between items. |
+| `className` | `string` | -- | Additional CSS classes. |

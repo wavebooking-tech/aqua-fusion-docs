@@ -1,0 +1,85 @@
+export const metadata = {
+  title: 'ActionMenu',
+  description: 'Dropdown menu for contextual actions, built on Radix UI Dropdown Menu.',
+};
+
+# ActionMenu
+
+A dropdown menu for presenting contextual actions. Supports flat item lists or grouped items with labels, danger styling for destructive actions, keyboard shortcuts, and controlled open state. Built on Radix UI Dropdown Menu.
+
+## Import
+
+```tsx
+import { ActionMenu } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="patterns-actionmenu--default" height={300} />
+
+## Usage
+
+```tsx
+<ActionMenu
+  items={[
+    { key: 'edit', label: 'Edit', onClick: () => handleEdit() },
+    { key: 'duplicate', label: 'Duplicate', onClick: () => handleDuplicate() },
+    { key: 'delete', label: 'Delete', danger: true, onClick: () => handleDelete() },
+  ]}
+/>
+```
+
+### Grouped items
+
+```tsx
+<ActionMenu
+  items={[
+    {
+      label: 'Actions',
+      items: [
+        { key: 'edit', label: 'Edit', onClick: () => {} },
+        { key: 'duplicate', label: 'Duplicate', onClick: () => {} },
+      ],
+    },
+    {
+      label: 'Danger zone',
+      items: [
+        { key: 'delete', label: 'Delete', danger: true, onClick: () => {} },
+      ],
+    },
+  ]}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'items', type: 'ActionMenuItem[] | ActionMenuGroup[]', description: 'Menu items as a flat list or grouped with labels.', required: true },
+  { name: 'trigger', type: 'ReactNode', description: 'Custom trigger element. Defaults to a vertical ellipsis icon button.' },
+  { name: 'triggerLabel', type: 'string', default: "'Actions'", description: 'Accessible label for the default trigger button.' },
+  { name: 'align', type: "'start' | 'center' | 'end'", default: "'end'", description: 'Horizontal alignment of the dropdown menu.' },
+  { name: 'side', type: "'top' | 'right' | 'bottom' | 'left'", default: "'bottom'", description: 'Side of the trigger where the menu appears.' },
+  { name: 'triggerClassName', type: 'string', description: 'Additional CSS class for the trigger button.' },
+  { name: 'contentClassName', type: 'string', description: 'Additional CSS class for the dropdown content.' },
+  { name: 'open', type: 'boolean', description: 'Controlled open state of the menu.' },
+  { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Callback fired when the open state changes.' },
+]} />
+
+### ActionMenuItem
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `key` | `string` | Unique key for the item. |
+| `label` | `string` | Display label. |
+| `icon` | `ReactNode` | Optional icon displayed before the label. |
+| `onClick` | `() => void` | Click handler for the item. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `danger` | `boolean` | Applies destructive/danger styling. |
+| `shortcut` | `string` | Keyboard shortcut hint text. |
+
+### ActionMenuGroup
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `label` | `string` | Optional group label displayed above items. |
+| `items` | `ActionMenuItem[]` | Items in this group. |

@@ -1,0 +1,168 @@
+export const metadata = {
+  title: 'Usage',
+  description: 'Learn how to use Aqua Fusion components - import patterns, composition, forms, and best practices.',
+};
+
+# Usage
+
+## Import patterns
+
+### Default import (all exports)
+
+```tsx
+import { Button, Input, Card, Typography } from '@wavebooking/aqua-fusion';
+```
+
+### Scoped imports (tree-shaking)
+
+For smaller bundle sizes, import from specific entry points:
+
+```tsx
+import { Button, Input } from '@wavebooking/aqua-fusion/components';
+import { FormField, DataTable } from '@wavebooking/aqua-fusion/patterns';
+import { useMediaQuery } from '@wavebooking/aqua-fusion/hooks';
+import { palette, spacing } from '@wavebooking/aqua-fusion/foundations';
+```
+
+## Component composition
+
+Aqua Fusion components are designed to compose together:
+
+```tsx
+import { Card, Typography, Button, Badge } from '@wavebooking/aqua-fusion';
+
+function ProductCard({ title, price, status }) {
+  return (
+    <Card className="p-6">
+      <div className="flex items-start justify-between">
+        <Typography variant="h3">{title}</Typography>
+        <Badge variant={status === 'active' ? 'success' : 'warning'}>
+          {status}
+        </Badge>
+      </div>
+      <Typography variant="body2" className="mt-2 text-content-secondary">
+        ${price}
+      </Typography>
+      <Button variant="default" className="mt-4">
+        Add to Cart
+      </Button>
+    </Card>
+  );
+}
+```
+
+## Forms
+
+### Basic form with FormField
+
+```tsx
+import { FormField, Button } from '@wavebooking/aqua-fusion';
+
+function LoginForm() {
+  return (
+    <form className="space-y-4">
+      <FormField label="Email" name="email" type="email" required />
+      <FormField label="Password" name="password" type="password" required />
+      <Button type="submit" variant="default" className="w-full">
+        Sign In
+      </Button>
+    </form>
+  );
+}
+```
+
+### With react-hook-form
+
+```tsx
+import { useForm } from 'react-hook-form';
+import { FormField, Button } from '@wavebooking/aqua-fusion';
+
+function ContactForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <FormField
+        label="Name"
+        error={errors.name?.message}
+        {...register('name', { required: 'Name is required' })}
+      />
+      <FormField
+        label="Email"
+        type="email"
+        error={errors.email?.message}
+        {...register('email', { required: 'Email is required' })}
+      />
+      <Button type="submit" variant="default">
+        Submit
+      </Button>
+    </form>
+  );
+}
+```
+
+## Using the className prop
+
+All components accept a `className` prop for additional styling:
+
+```tsx
+<Button variant="default" className="w-full mt-4">
+  Full Width Button
+</Button>
+
+<Card className="p-8 shadow-ui-lg">
+  Custom padding and shadow
+</Card>
+```
+
+## Using with Next.js
+
+Aqua Fusion components include the `"use client"` directive in the built output, so they work in both Server and Client components:
+
+```tsx
+// This works in a Server Component
+import { Typography, Card } from '@wavebooking/aqua-fusion';
+
+export default function Page() {
+  return (
+    <Card>
+      <Typography variant="h1">Server Rendered</Typography>
+    </Card>
+  );
+}
+```
+
+For interactive components (Dialog, Toast, etc.), wrap them in a Client Component:
+
+```tsx
+'use client';
+
+import { Button, Dialog } from '@wavebooking/aqua-fusion';
+import { useState } from 'react';
+
+export function MyDialog() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog open={open} onOpenChange={setOpen} title="Confirm">
+        <p>Are you sure?</p>
+      </Dialog>
+    </>
+  );
+}
+```
+
+## Icons
+
+Always use the `Icon` component from Aqua Fusion. Never import directly from `@heroicons/react`:
+
+```tsx
+// Correct
+import { Icon } from '@wavebooking/aqua-fusion';
+<Icon name="CheckCircleIcon" className="h-5 w-5 text-green-500" />
+
+// Incorrect - do not do this
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+```

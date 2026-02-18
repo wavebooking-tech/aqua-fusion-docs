@@ -1,0 +1,87 @@
+export const metadata = {
+  title: 'Typography',
+  description: 'Text rendering component with semantic heading and body variants, color options, and font family selection.',
+};
+
+# Typography
+
+A text component that applies consistent typographic styles from the Aqua Fusion design system. Supports heading levels (h1-h6), body text, and captions with semantic color and font family variants.
+
+## Import
+
+```tsx
+import { Typography } from '@wavebooking/aqua-fusion';
+```
+
+## Preview
+
+<StorybookEmbed story="components-typography--default" height={300} />
+
+## Usage
+
+```tsx
+<Typography variant="h2">Section Title</Typography>
+<Typography variant="body1">Regular paragraph text.</Typography>
+```
+
+### Headings
+
+```tsx
+<Typography variant="h1">Heading 1</Typography>
+<Typography variant="h2">Heading 2</Typography>
+<Typography variant="h3">Heading 3</Typography>
+<Typography variant="h4">Heading 4</Typography>
+<Typography variant="h5">Heading 5</Typography>
+<Typography variant="h6">Heading 6</Typography>
+```
+
+### Body and caption
+
+```tsx
+<Typography variant="body1">Body 1 - Default paragraph text.</Typography>
+<Typography variant="body2">Body 2 - Smaller secondary text.</Typography>
+<Typography variant="caption">Caption - Fine print or metadata.</Typography>
+```
+
+### Color variants
+
+```tsx
+<Typography color="primary">Primary brand color</Typography>
+<Typography color="secondary">Secondary muted text</Typography>
+<Typography color="success">Success feedback</Typography>
+<Typography color="error">Error feedback</Typography>
+<Typography color="warning">Warning feedback</Typography>
+<Typography color="info">Info feedback</Typography>
+```
+
+### Custom HTML element
+
+By default, Typography renders a `<p>` tag. Use the `component` prop to change the underlying element.
+
+```tsx
+<Typography variant="h1" component="h1">
+  Rendered as an h1 element
+</Typography>
+
+<Typography variant="body1" component="span">
+  Rendered as a span
+</Typography>
+```
+
+### Font family
+
+```tsx
+<Typography fontFamily="inter">Inter font (default)</Typography>
+<Typography fontFamily="poppins">Poppins font</Typography>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'variant', type: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'caption'", default: "'body1'", description: 'Typographic style variant controlling font size, weight, and line height.' },
+  { name: 'color', type: "'default' | 'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'info'", default: "'default'", description: 'Semantic text color.' },
+  { name: 'fontFamily', type: "'inter' | 'poppins'", default: "'inter'", description: 'Font family to apply.' },
+  { name: 'component', type: 'React.ElementType', default: "'p'", description: 'The HTML element or React component to render as.' },
+  { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+  { name: 'children', type: 'React.ReactNode', description: 'The text content to render.' },
+]} />
