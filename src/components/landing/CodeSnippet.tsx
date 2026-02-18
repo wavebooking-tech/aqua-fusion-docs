@@ -30,7 +30,7 @@ export function CodeSnippet({ code, language, title }: CodeSnippetProps) {
       )}
 
       <div className="bg-gray-900 p-4">
-        <pre className="overflow-x-auto border-0 bg-transparent p-0">
+        <pre data-theme="dark" className="overflow-x-auto border-0 bg-transparent p-0 rounded-none">
           <code
             className="text-sm leading-relaxed text-gray-100"
             data-language={language}
