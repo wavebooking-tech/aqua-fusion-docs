@@ -18,9 +18,8 @@ next-env.d.ts
 .env.local
 .env.production.local
 
-# firebase
-.firebase/
-firebase-debug.log
+# vercel
+.vercel/
 
 # editor
 .vscode/

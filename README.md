@@ -35,44 +35,27 @@ Copy `.env.example` to `.env.local` and set the deployed Storybook URL.
 | Command | Description |
 | --- | --- |
 | `npm run dev` | Start dev server (port 3003) |
-| `npm run build` | Production static build (`out/`) |
+| `npm run build` | Production build |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Type-check with TypeScript |
 
 ## Deployment
 
-The site is configured for **static export** (`output: 'export'` in `next.config.mjs`) and deployed to **Firebase Hosting**.
+The site is deployed to **Vercel** with automatic deployments via GitHub integration.
 
-### Manual deploy
+- **Push to `main`** → deploys to production
+- **Pull requests** → automatic preview deployments
 
-```bash
-npm run build
-npx firebase deploy --only hosting
-```
+### Setup
 
-### CI/CD (GitHub Actions)
+1. Import the repository on [vercel.com/new](https://vercel.com/new)
+2. Vercel auto-detects Next.js — no extra configuration needed
+3. Add the `NEXT_PUBLIC_STORYBOOK_URL` environment variable in **Project Settings → Environment Variables** (once the Storybook is deployed)
 
-Automatic deployment is configured in `.github/workflows/deploy.yml`:
+### CI (GitHub Actions)
 
-- **Push to `main`** → deploys to production (live channel)
-- **Pull requests** → deploys a preview URL
-
-#### Required GitHub secrets and variables
-
-| Type | Name | Description |
-| --- | --- | --- |
-| Secret | `FIREBASE_SERVICE_ACCOUNT` | Firebase service account JSON key |
-| Variable | `FIREBASE_PROJECT_ID` | Firebase project ID |
-| Variable | `STORYBOOK_URL` | Deployed Storybook instance URL |
-
-#### Firebase setup
-
-1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
-2. Enable Hosting in the project
-3. Update the project ID in `.firebaserc`
-4. Generate a service account key: **Project Settings → Service accounts → Generate new private key**
-5. Add the JSON key as the `FIREBASE_SERVICE_ACCOUNT` secret in your GitHub repo settings
+Linting and type-checking run automatically on pushes and PRs via `.github/workflows/ci.yml`. Build and deployment are handled by Vercel.
 
 ## Tech stack
 
@@ -80,4 +63,4 @@ Automatic deployment is configured in `.github/workflows/deploy.yml`:
 - [MDX](https://mdxjs.com/) for documentation pages
 - [Tailwind CSS](https://tailwindcss.com/)
 - [@wavebooking/aqua-fusion](https://www.npmjs.com/package/@wavebooking/aqua-fusion) design system
-- [Firebase Hosting](https://firebase.google.com/docs/hosting) for deployment
+- [Vercel](https://vercel.com/) for deployment
