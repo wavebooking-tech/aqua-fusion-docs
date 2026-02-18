@@ -63,7 +63,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
-    code: ({ children, className }) => {
+    code: ({ children, className, ...props }) => {
+      // Code blocks processed by rehype-pretty-code have data-theme attribute
+      if ('data-theme' in props) {
+        return (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        );
+      }
+      // Inline code (no className from language fence)
       if (!className) {
         return (
           <code className="rounded bg-surface-muted px-1.5 py-0.5 text-sm font-mono text-primary-700 before:content-none after:content-none">

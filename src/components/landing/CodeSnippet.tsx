@@ -1,3 +1,5 @@
+import { codeToHtml } from 'shiki';
+
 export type CodeSnippetProps = {
   /** The code string to display */
   code: string;
@@ -13,7 +15,12 @@ export type CodeSnippetProps = {
  * A server-rendered, dark-themed code display block with optional title bar.
  * Used on the marketing landing page for installation and usage examples.
  */
-export function CodeSnippet({ code, language, title }: CodeSnippetProps) {
+export async function CodeSnippet({ code, language, title }: CodeSnippetProps) {
+  const highlighted = await codeToHtml(code, {
+    lang: language || 'text',
+    theme: 'github-dark',
+  });
+
   return (
     <div className="overflow-hidden rounded-lg border border-gray-800">
       {title && (
@@ -29,16 +36,10 @@ export function CodeSnippet({ code, language, title }: CodeSnippetProps) {
         </div>
       )}
 
-      <div className="bg-gray-900 p-4">
-        <pre className="overflow-x-auto border-0 bg-transparent p-0">
-          <code
-            className="text-sm leading-relaxed text-gray-100"
-            data-language={language}
-          >
-            {code}
-          </code>
-        </pre>
-      </div>
+      <div
+        className="[&_pre]:overflow-x-auto [&_pre]:!border-0 [&_pre]:p-4 [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre]:rounded-none [&_code]:font-[JetBrains_Mono,monospace]"
+        dangerouslySetInnerHTML={{ __html: highlighted }}
+      />
     </div>
   );
 }
