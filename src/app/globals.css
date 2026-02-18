@@ -16,17 +16,36 @@
   }
 }
 
-pre > code {
-  display: block;
-  overflow-x: auto;
+code {
+  font-family: 'JetBrains Mono', monospace;
 }
 
-pre {
+/* Code blocks styled by rehype-pretty-code */
+figure[data-rehype-pretty-code-figure] {
+  @apply my-4;
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  @apply rounded-ui-lg border border-line p-4 text-sm leading-relaxed overflow-x-auto;
+}
+
+figure[data-rehype-pretty-code-figure] pre > code {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+figure[data-rehype-pretty-code-figure] code [data-line] {
+  @apply px-1;
+}
+
+/* Fallback for code blocks not processed by rehype-pretty-code */
+pre:not([data-theme]) {
   @apply rounded-ui-lg border border-line bg-surface-subtle p-4 text-sm leading-relaxed;
 }
 
-code {
-  font-family: 'JetBrains Mono', monospace;
+pre:not([data-theme]) > code {
+  display: block;
+  overflow-x: auto;
 }
 
 .docs-sidebar::-webkit-scrollbar {
