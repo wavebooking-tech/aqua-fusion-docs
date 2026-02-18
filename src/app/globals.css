@@ -39,13 +39,15 @@ figure[data-rehype-pretty-code-figure] code [data-line] {
 }
 
 /* Fallback for code blocks not processed by rehype-pretty-code */
-pre:not([data-theme]) {
-  @apply rounded-ui-lg border border-line bg-surface-subtle p-4 text-sm leading-relaxed;
-}
+@layer components {
+  pre:not([data-theme]) {
+    @apply rounded-ui-lg border border-line bg-surface-subtle p-4 text-sm leading-relaxed;
+  }
 
-pre:not([data-theme]) > code {
-  display: block;
-  overflow-x: auto;
+  pre:not([data-theme]) > code {
+    display: block;
+    overflow-x: auto;
+  }
 }
 
 .docs-sidebar::-webkit-scrollbar {
