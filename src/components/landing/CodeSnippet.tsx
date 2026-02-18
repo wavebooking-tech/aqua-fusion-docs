@@ -37,7 +37,7 @@ export async function CodeSnippet({ code, language, title }: CodeSnippetProps) {
       )}
 
       <div
-        className="[&_pre]:overflow-x-auto [&_pre]:p-4 [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre]:rounded-none [&_code]:font-[JetBrains_Mono,monospace]"
+        className="[&_pre]:overflow-x-auto [&_pre]:!border-0 [&_pre]:p-4 [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre]:rounded-none [&_code]:font-[JetBrains_Mono,monospace]"
         dangerouslySetInnerHTML={{ __html: highlighted }}
       />
     </div>
